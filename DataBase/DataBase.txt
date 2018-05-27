@@ -1,0 +1,176 @@
+:::::::::DATABASE OF RG PROJECT IMS::::::::
+
+
+mysql> show tables;
++-----------------+
+| Tables_in_ims   |
++-----------------+
+| admin           |
+| categories      |
+| items           |
+| role            |
+| tcategories     |
+| transaction     |
+| transactiontype |
+| user            |
++-----------------+
+
+
+
+
+mysql> create table role(rid int primary key NOT NULL,rpermission varchar(10) NOT NULL unique key);
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc role;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| rid         | int(11) | NO   | PRI | NULL    |       |
+| rpermission | varchar | NO   | UNI | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+2 rows in set (0.04 sec)
+
+mysql> create table admin(uid int primary key auto_increment NOT NULL,rid int NOT NULL,username varchar(30) NOT NULL,password varchar(30) not null,name varchar(50) not null,phone int(10) not null,email varchar(30) not null,address varchar(100) not null,city varchar(10) not null,country varchar(10) not null,lastlogin timestamp not null,gender varchar(1) not null,FOREIGN KEY (rid) REFERENCES role(rid));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> desc admin
+    -> ;
++-----------+--------------+------+-----+-------------------+-----------------------------+
+| Field     | Type         | Null | Key | Default           | Extra                       |
++-----------+--------------+------+-----+-------------------+-----------------------------+
+| uid       | int(11)      | NO   | PRI | NULL              | auto_increment              |
+| rid       | int(11)      | NO   | MUL | NULL              |                             |
+| username  | varchar(30)  | NO   |     | NULL              |                             |
+| password  | varchar(30)  | NO   |     | NULL              |                             |
+| name      | varchar(50)  | NO   |     | NULL              |                             |
+| phone     | int(10)      | NO   |     | NULL              |                             |
+| email     | varchar(30)  | NO   |     | NULL              |                             |
+| address   | varchar(100) | NO   |     | NULL              |                             |
+| city      | varchar(10)  | NO   |     | NULL              |                             |
+| country   | varchar(10)  | NO   |     | NULL              |                             |
+| lastlogin | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| gender    | varchar(1)   | NO   |     | NULL              |                             |
++-----------+--------------+------+-----+-------------------+-----------------------------+
+12 rows in set (0.03 sec)
+
+mysql> create table user(custid int primary key auto_increment NOT NULL,username varchar(30) not null,password varchar(30) not null,name varchar(50) not null,phone int(10) not null,email varchar(30) not null,address varchar(100) not null,city varchar(10) not null,country varchar(10) not null,lastlogin timestamp not null,gender varchar(1) not null,purchased int);
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc user;
++-----------+--------------+------+-----+-------------------+-----------------------------+
+| Field     | Type         | Null | Key | Default           | Extra                       |
++-----------+--------------+------+-----+-------------------+-----------------------------+
+| custid    | int(11)      | NO   | PRI | NULL              | auto_increment              |
+| username  | varchar(30)  | NO   |     | NULL              |                             |
+| password  | varchar(30)  | NO   |     | NULL              |                             |
+| name      | varchar(50)  | NO   |     | NULL              |                             |
+| phone     | int(10)      | NO   |     | NULL              |                             |
+| email     | varchar(30)  | NO   |     | NULL              |                             |
+| address   | varchar(100) | NO   |     | NULL              |                             |
+| city      | varchar(10)  | NO   |     | NULL              |                             |
+| country   | varchar(10)  | NO   |     | NULL              |                             |
+| lastlogin | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| gender    | varchar(1)   | NO   |     | NULL              |                             |
+| purchased | int(11)      | YES  |     | NULL              |                             |
++-----------+--------------+------+-----+-------------------+-----------------------------+
+12 rows in set (0.05 sec)
+
+mysql> create table tcategories(tcid int not null primary key,tcname varchar(50) not null);
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> desc tcategories;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| tcid   | int(11)     | NO   | PRI | NULL    |       |
+| tcname | varchar(50) | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+2 rows in set (0.03 sec)
+
+mysql> create table categories(cid int not null primary key,cname varchar(50) not null);
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> desc categories;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| cid   | int(11)     | NO   | PRI | NULL    |       |
+| cname | varchar(50) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.03 sec)
+
+mysql> create table items(iid int not null primary key auto_increment,tcid int not null,cid int not null,iname varchar(50) not null,ibrand varchar(50) not null,iprice float not null,iunit varchar(30) not null,istock int not null,foreign key (tcid) references tcategories(tcid),foreign key (cid) references categories(cid));
+Query OK, 0 rows affected (0.22 sec)
+
+mysql> desc items;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| iid    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| tcid   | int(11)     | NO   | MUL | NULL    |                |
+| cid    | int(11)     | NO   | MUL | NULL    |                |
+| iname  | varchar(50) | NO   |     | NULL    |                |
+| ibrand | varchar(50) | NO   |     | NULL    |                |
+| iprice | float       | NO   |     | NULL    |                |
+| iunit  | varchar(30) | NO   |     | NULL    |                |
+| istock | int(11)     | NO   |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+8 rows in set (0.03 sec)
+
+mysql> create table transactiontype(ttid int not null primary key,ttname varchar(50) not null);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc transactiontype;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| ttid   | int(11)     | NO   | PRI | NULL    |       |
+| ttname | varchar(50) | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+2 rows in set (0.05 sec)
+
+mysql> create table transaction(transid int not null auto_increment primary key,iid int not null,ttid int not null,custid int not null,time timestamp not null,quality int not null,foreign key (iid) references items(iid),foreign key (custid) references user(custid),foreign key (ttid) references transactiontype(ttid));
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> desc transaction;
++---------+-----------+------+-----+-------------------+-----------------------------+
+| Field   | Type      | Null | Key | Default           | Extra                       |
++---------+-----------+------+-----+-------------------+-----------------------------+
+| transid | int(11)   | NO   | PRI | NULL              | auto_increment              |
+| iid     | int(11)   | NO   | MUL | NULL              |                             |
+| ttid    | int(11)   | NO   | MUL | NULL              |                             |
+| custid  | int(11)   | NO   | MUL | NULL              |                             |
+| time    | timestamp | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| quality | int(11)   | NO   |     | NULL              |                             |
++---------+-----------+------+-----+-------------------+-----------------------------+
+6 rows in set (0.05 sec)
+
+
+mysql> select * from role;
++-----+-------------+
+| rid | rpermission |
++-----+-------------+
+|   1 | viewonly    |
+|   2 | viewupdate  |
++-----+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from tcategories;
++------+---------------+
+| tcid | tcname        |
++------+---------------+
+|    1 | consumable    |
+|    2 | nonconsumable |
++------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from transactiontype;
++------+----------------+
+| ttid | ttname         |
++------+----------------+
+|    1 | requested      |
+|    2 | cancledbyadmin |
+|    3 | success        |
+|    4 | cancledbyuser  |
++------+----------------+
+4 rows in set (0.00 sec)
