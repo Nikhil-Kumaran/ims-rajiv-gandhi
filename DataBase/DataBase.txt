@@ -18,7 +18,7 @@ mysql> show tables;
 
 
 
-mysql> create table role(rid int primary key NOT NULL,rpermission int NOT NULL unique key);
+mysql> create table role(rid int primary key NOT NULL,rpermission varchar(10) NOT NULL unique key);
 Query OK, 0 rows affected (0.11 sec)
 
 mysql> desc role;
@@ -26,7 +26,7 @@ mysql> desc role;
 | Field       | Type    | Null | Key | Default | Extra |
 +-------------+---------+------+-----+---------+-------+
 | rid         | int(11) | NO   | PRI | NULL    |       |
-| rpermission | int(11) | NO   | UNI | NULL    |       |
+| rpermission | varchar | NO   | UNI | NULL    |       |
 +-------------+---------+------+-----+---------+-------+
 2 rows in set (0.04 sec)
 
@@ -144,3 +144,33 @@ mysql> desc transaction;
 | quality | int(11)   | NO   |     | NULL              |                             |
 +---------+-----------+------+-----+-------------------+-----------------------------+
 6 rows in set (0.05 sec)
+
+
+mysql> select * from role;
++-----+-------------+
+| rid | rpermission |
++-----+-------------+
+|   1 | viewonly    |
+|   2 | viewupdate  |
++-----+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from tcategories;
++------+---------------+
+| tcid | tcname        |
++------+---------------+
+|    1 | consumable    |
+|    2 | nonconsumable |
++------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from transactiontype;
++------+----------------+
+| ttid | ttname         |
++------+----------------+
+|    1 | requested      |
+|    2 | cancledbyadmin |
+|    3 | success        |
+|    4 | cancledbyuser  |
++------+----------------+
+4 rows in set (0.00 sec)
