@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <!-- bootstrap css -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+   <title>Approve Intent</title>
+   <style>
+      #side-menu{
+         
+         height: 100vh;
+         overflow-y: scroll;
+      }
+      #side-menu .links{
+         position: relative;
+         top:30px;
+         padding: 10px;
+      }
+      #content{
+         padding: 30px;
+      }
+      .linkitem{
+         padding-left: 10px;
+         margin-bottom: 15px;
+         cursor: pointer;
+      }
+      .linkitem a:hover{
+         text-decoration: none;
+      }
+      .active{
+         border-left: 2px solid black;
+      }
+      
+   </style>
+</head>
+<body>
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-2" id="side-menu">
+            <div class="links">
+               <div class="linkitem"><a href="">Add Admin</a></div>
+               <div class="linkitem"><a href="">View Admin</a></div>
+               <div class="linkitem"><a href="">Add User</a></div>
+               <div class="linkitem"><a href="">View User</a></div>
+               <div class="linkitem"><a href="">Add Items</a></div>
+               <div class="linkitem"><a href="">View Items</a></div>
+               <div class="linkitem"><a href="">Update Stock</a></div>
+               <div class="linkitem"><a href="">Search Item</a></div>
+               <div class="linkitem"><a href="">Manage Transactions</a></div>
+               <div class="linkitem"><a href="">Approve Intents</a></div>
+            </div>
+         </div>
+         <div class="col-10" id="content">
+            <div class="container">
+                  <table class="table">
+                        <thead>
+                           <tr>
+                              <th scope="col">Transaction ID</th>
+                              <th scope="col">Item name</th>
+                              <th scope="col">Transaction type</th>
+                              <th scope="col">Customer name</th>
+                              <th scope="col">Time</th>
+                              <th scope="col">Quantity</th>
+                              <th scope="col">Approve</th>
+                              <th scope="col">Reject</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <th scope="row">1</th>
+                              <td>pen</td>
+                              <td>Requested</td>
+                              <td>Nihkil</td>
+                              <td>2018-05-29 11:58:03</td>
+                              <td>10</td>
+                              <td><i class="fas fa-check-circle fa-lg center" style="color: green;margin-left: 1em"></i></td>
+                              <td><i class="fas fa-times-circle fa-lg" style="color: firebrick;margin-left: 1em;"></i></td>
+                           </tr>
+                           <tr>
+                              <th scope="row">2</th>
+                              <td>pen</td>
+                              <td>Requested</td>
+                              <td>Nihkil</td>
+                              <td>2018-05-29 11:58:03</td>
+                              <td>10</td>
+                              <td><i class="fas fa-check-circle fa-lg center" style="color: green;margin-left: 1em"></i></td>
+                              <td><i class="fas fa-times-circle fa-lg" style="color: firebrick;margin-left: 1em;"></i></td>
+                           </tr>
+                           <tr>
+                              <th scope="row">3</th>
+                              <td>pen</td>
+                              <td>Requested</td>
+                              <td>Nihkil</td>
+                              <td>2018-05-29 11:58:03</td>
+                              <td>10</td>
+                              <td><i class="fas fa-check-circle fa-lg" style="color: green;margin-left: 1em"></i></td>
+                              <td><i class="fas fa-times-circle fa-lg" style="color: firebrick;margin-left: 1em;"></i></td>
+                           </tr>
+                        </tbody>
+                     </table>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+
+   <!-- Bootstrap cdns -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+   <script>
+         $(function(){  
+            $('.linkitem').on('click',function(){
+               $(this).addClass('active');
+            });
+         });
+      </script>
+</body>
+</html>
