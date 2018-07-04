@@ -1,0 +1,29 @@
+#side-menu{
+         
+         height: 100vh;
+         overflow-y: scroll;
+      }
+      #side-menu .links{
+         padding: 10px;
+      }
+      #content{
+         padding: 30px;
+      }
+      .linkitem{
+         padding-left: 10px;
+         margin-bottom: 15px;
+         cursor: pointer;
+      }
+      .linkitem a{
+      color:black
+      }
+      .linkitem a:hover{
+         text-decoration: none;
+      }
+      .active{
+         border-left: 2px solid black;
+      }
+      .center{
+      	text-align:center;
+      }
+      
