@@ -60,6 +60,7 @@ public class ViewTransactions extends HttpServlet {
 				bean.setTime(rs.getTimestamp("time"));
 				bean.setTransid(rs.getInt("transid"));
 				bean.setTtype(rs.getInt("ttid"));
+				bean.setLocation(rs.getString("location"));
 				transactions.add(bean);
 			}
 			request.setAttribute("trans", transactions);
@@ -84,6 +85,18 @@ public class ViewTransactions extends HttpServlet {
 					response.addCookie(d);
 					break;
 				}
+				else if(d.getName().equals("usercomplaint")) {
+					s = d.getName();
+					d.setMaxAge(0);
+					response.addCookie(d);
+					break;
+				}
+				else if(d.getName().equals("userreturn")) {
+					s = d.getName();
+					d.setMaxAge(0);
+					response.addCookie(d);
+					break;
+				}
 			}
 			if(s.equals("alltrans")) {
 				RequestDispatcher rd = request.getRequestDispatcher("view_transactions.jsp");
@@ -95,6 +108,14 @@ public class ViewTransactions extends HttpServlet {
 			}
 			else if(s.equals("myTrans")) {
 				RequestDispatcher rd = request.getRequestDispatcher("my_transactions.jsp");
+				rd.forward(request, response);
+			}
+			else if(s.equals("usercomplaint")) {
+				RequestDispatcher rd = request.getRequestDispatcher("newcomplaint.jsp");
+				rd.forward(request, response);
+			}
+			else if(s.equals("userreturn")) {
+				RequestDispatcher rd = request.getRequestDispatcher("newreturn.jsp");
 				rd.forward(request, response);
 			}
 		}

@@ -23,12 +23,14 @@ public class ItemsPreprocess extends HttpServlet {
 	Connection conn;
 	ArrayList <String> tcname= new ArrayList<String>();
 	ArrayList <String> cname= new ArrayList<String>();
+	ArrayList <String> sname= new ArrayList<String>();
     public ItemsPreprocess() {
     	conn = ProvideDBConn.getCon();
     }
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		tcname.clear();
 		cname.clear();
+		sname.clear();
 		PreparedStatement ps;
 		ResultSet rs;
 		try {
@@ -47,9 +49,17 @@ public class ItemsPreprocess extends HttpServlet {
 			}
 			rs.close();
 			ps.close();
+			ps = conn.prepareStatement("select * from suppliers");
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				sname.add(rs.getString("suppname"));
+			}
+			rs.close();
+			ps.close();
 			RequestDispatcher rd = req.getRequestDispatcher("add_items.jsp");
 			req.setAttribute("cname", cname);
 			req.setAttribute("tcname", tcname);
+			req.setAttribute("sname", sname);
 			rd.forward(req, res);
 		}
 		catch(Exception e) {

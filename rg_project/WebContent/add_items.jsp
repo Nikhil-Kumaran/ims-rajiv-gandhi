@@ -12,6 +12,7 @@
 <%@ include file="adminses.jsp" %>
 	<% ArrayList <String> cname = (ArrayList)request.getAttribute("cname");
 	ArrayList <String> tcname = (ArrayList)request.getAttribute("tcname");
+	ArrayList <String> sname = (ArrayList)request.getAttribute("sname");
 %>
 	<%@ include file="admin-template.jsp" %> 
 	<div class="col-10" id="content">
@@ -41,7 +42,7 @@
                      </div>
                      <div class="form-group col-md-6">
                         <label for="category">Category</label>
-                        <select name="category" class="form-control">
+                        <select name="category" class="form-control" placeholder="supplier name">
                         <% for(String s : cname){ %>
                            <option ><%=s %></option>
                            <%} %>
@@ -58,6 +59,15 @@
                      <div class="form-group col-md-6">
                      <label for="stock">stock</label>
                      <input type="number" class="form-control" name="stock" placeholder="stock">
+                     </div>
+                     <div class="form-group col-md-6">
+                     <div class="form-group col-md-6">
+                     <label for="supplier">Supplier</label>
+                     <select name="supplier" class="form-control">
+                      	<% for(String s : sname){ %>
+                           <option ><%=s %></option>
+                           <%} %>
+                     </select>
                      </div>
                      <button type="submit" class="btn btn-primary col-2 offset-md-5">Add Item</button>
                   </div>

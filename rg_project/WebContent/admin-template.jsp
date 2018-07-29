@@ -1,16 +1,17 @@
 	<%@ include file="adminses.jsp" %>
+	
    <div class="banner">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#">RG Inventory</a>
-            <!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <a class="navbar-brand" href="#">Rajiv Gandhi Inventory Management System</a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="logout.jsp" id="logout">Logout <span class="sr-only">(current)</span></a>
               </li>
-            </ul> -->
+            </ul>
           </div>
         </nav>
   </div>
@@ -27,5 +28,8 @@
                <div class="linkitem"><a href="updatestock.jsp">Update Stock</a></div>
                <div class="linkitem"><a href="ViewTransaction">Manage Transaction</a></div>
                <div class="linkitem"><a href="ManageIntent">Approve Intent</a></div>
+               <div class="linkitem"><a href="admin_chat.jsp">Complaint Chat History</a></div>
+               <div class="linkitem"><a href="admin_return_view.jsp">Pending return</a></div>
+               <div class="linkitem"><a href="return_history.jsp">Return history</a></div>
             </div>
          </div>

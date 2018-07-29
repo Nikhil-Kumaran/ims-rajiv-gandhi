@@ -9,6 +9,40 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="header.html" %> 
 <title>Manage Transactions</title>
+<style>
+	.hidden{
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.printbtn').click(function(){
+			
+			
+			var transid = $($(this)[0]).parent().parent().children()[0];
+			
+			var itemname = $($(this)[0]).parent().parent().children()[1];
+			
+			var transtype = $($(this)[0]).parent().parent().children()[2];
+			var custname = $($(this)[0]).parent().parent().children()[3];
+			var time = $($(this)[0]).parent().parent().children()[4];
+			var quantity = $($(this)[0]).parent().parent().children()[5];
+			console.log(transid);
+			
+			$('.hidden').html("transaction-id: "+$(transid).text()+"<br>Item Name: "+$(itemname).text()
+				+"<br>Transaction-type: "+$(transtype).text()+"<br>Customer-Name: "+$(custname).text()+"<br>Time: "+$(time).text()+"<br>quantity: "+$(quantity).text()		
+			);
+			var printContents = $('.hidden').html();
+		     var originalContents = document.body.innerHTML;
+
+		     document.body.innerHTML = printContents;
+
+		     window.print();
+
+		     document.body.innerHTML = originalContents;
+		});
+	});
+</script>
 </head>
 <body>
 	<%@ include file="adminses.jsp" %>
@@ -44,6 +78,8 @@
                               <th scope="col">Customer name</th>
                               <th scope="col">Time</th>
                               <th scope="col">Quantity</th>
+                              <th scope="col">Location</th>
+                              <th scope="col">Print</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -51,7 +87,6 @@
 
                         Collection <TransactionBean> trans = (Collection) request.getAttribute("trans");
                         for(TransactionBean t : trans){
-                              
                         %>
                            <tr>
                               <th scope="row"><%= t.getTransid()%></th>
@@ -60,6 +95,15 @@
                               <td><%= t.getUsername() %></td>
                               <td><%= t.getTime() %></td>
                               <td><%= t.getQuantity() %></td>
+                              <%
+                              if(t.getLocation() != null){ %>
+                              	<td><%= t.getLocation() %></td>
+                              <%}
+                              else{
+                              %>
+                              <td>Warehouse</td>
+                              <%} %>
+                              <td><button class="btn printbtn">PRINT</button></td>
                            </tr>
                         <%
                         }
@@ -77,6 +121,7 @@
                                     <th scope="col">Customer name</th>
                                     <th scope="col">Time</th>
                                     <th scope="col">Quantity</th>
+                                    <th scope="col">Location</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -93,6 +138,14 @@
                                     <td><%= t.getUsername() %></td>
                                     <td><%= t.getTime() %></td>
                                     <td><%= t.getQuantity() %></td>
+	                                    <%
+	                              if(t.getLocation() != null){ %>
+	                              	<td><%= t.getLocation() %></td>
+	                              <%}
+	                              else{
+	                              %>
+	                              <td>Warehouse</td>
+	                              <%} %>
                                     </tr>
                               <%
                               }
@@ -111,6 +164,7 @@
                                     <th scope="col">Customer name</th>
                                     <th scope="col">Time</th>
                                     <th scope="col">Quantity</th>
+                                    <th scope="col">Location</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -127,6 +181,14 @@
                                     <td><%= t.getUsername() %></td>
                                     <td><%= t.getTime() %></td>
                                     <td><%= t.getQuantity() %></td>
+	                                    <%
+	                              if(t.getLocation() != null){ %>
+	                              	<td><%= t.getLocation() %></td>
+	                              <%}
+	                              else{
+	                              %>
+	                              <td>Warehouse</td>
+	                              <%} %>
                                     </tr>
                               <%
                               }
@@ -145,6 +207,7 @@
                                     <th scope="col">Customer name</th>
                                     <th scope="col">Time</th>
                                     <th scope="col">Quantity</th>
+                                    <th scope="col">Location</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -161,6 +224,14 @@
                                     <td><%= t.getUsername() %></td>
                                     <td><%= t.getTime() %></td>
                                     <td><%= t.getQuantity() %></td>
+	                                    <%
+	                              if(t.getLocation() != null){ %>
+	                              	<td><%= t.getLocation() %></td>
+	                              <%}
+	                              else{
+	                              %>
+	                              <td>Warehouse</td>
+	                              <%} %>
                                     </tr>
                               <%
                               }
@@ -179,6 +250,7 @@
                               <th scope="col">Customer name</th>
                               <th scope="col">Time</th>
                               <th scope="col">Quantity</th>
+                              <th scope="col">Location</th>
                               </tr>
                         </thead>
                         <tbody>
@@ -195,6 +267,14 @@
                               <td><%= t.getUsername() %></td>
                               <td><%= t.getTime() %></td>
                               <td><%= t.getQuantity() %></td>
+                              <%
+                              if(t.getLocation() != null){ %>
+                              	<td><%= t.getLocation() %></td>
+                              <%}
+                              else{
+                              %>
+                              <td>Warehouse</td>
+                              <%} %>
                               </tr>
                         <%
                         }
@@ -208,6 +288,8 @@
             </div>
          </div>
       </div>
+   </div>
+   <div class="hidden">
    </div>
    <%@ include file="footer.html" %> 
 </body>

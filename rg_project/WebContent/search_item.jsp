@@ -12,6 +12,21 @@
 </head>
 <body>
 <%@ include file="adminses.jsp" %>
+<%
+Cookie[] c=request.getCookies();
+for(Cookie d:c)
+{
+		if(d.getName().equals("JSESSIONID")){
+		}
+		else{
+		System.out.println(d.getName());
+		d.setMaxAge(0);
+		response.addCookie(d);
+		}
+		
+		
+}
+%>
 	<%@ include file="admin-template.jsp" %>
 	<% Cookie c1=new Cookie("adminsearch","adminview");
 			//c1.setMaxAge(60*60*24);

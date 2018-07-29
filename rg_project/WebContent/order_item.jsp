@@ -15,8 +15,12 @@
 </head>
 <body>
 <%@ include file="userses.jsp" %>
-	<%@ include file="user_template.html" %>
-	
+	<%@ include file="user_template.jsp" %>
+	<%
+		UserRegBean currentUser = new UserRegBean();
+		currentUser = (UserRegBean)session.getAttribute("user");
+		int userid=currentUser.getCustid();
+	%>
 	<div class="col-10" id="content">
 		<h1 style="text-align:center">Item List</h1>
             <div class="container">
@@ -50,9 +54,6 @@
                         <td><%= item.getProduct_brand() %></td>
                         <td><%= item.getUnit() %></td>
                         <td><%= item.getPrice() %></td>
-                        
-	    
-	    
                         <td><%= item.getStock() %></td>
                         <td><input type="text" ></td>
                         <td><input type="button" value="Add To Cart" class="btn butn"></td>
@@ -70,5 +71,6 @@
       </div>
    </div>
    <%@ include file="footer.html" %> 
+   <input id="uid" type="hidden" value="<%=userid %>">
 </body>
 </html>

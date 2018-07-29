@@ -8,7 +8,7 @@
                var ibrand=$($(this).parent().parent().children()[4]).text();
                var quantity=$($(this).parent().parent().children()[8]).children().val();
                var data = {
-               		custid:8,
+               		custid:$("#uid").val(),
                		iname:iname,
                		ibrand:ibrand,
                		quantity:quantity,

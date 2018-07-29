@@ -12,7 +12,7 @@
 </head>
 <body>
 <%@ include file="userses.jsp" %>
-	<%@ include file="user_template.html" %>
+	<%@ include file="user_template.jsp" %>
 	
 	<div class="col-10" id="content">
 		<h1 style="text-align:center">Item List</h1>

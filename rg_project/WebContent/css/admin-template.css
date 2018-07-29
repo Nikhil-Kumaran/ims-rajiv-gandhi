@@ -6,6 +6,10 @@
       #side-menu .links{
          padding: 10px;
       }
+      #myTabContent{
+      	height:500px;
+      	overflow-y:scroll;
+      }
       #content{
          padding: 30px;
       }
@@ -25,5 +29,8 @@
       }
       .center{
       	text-align:center;
+      }
+      #logout{
+      	    margin-left: 10px;
       }
       

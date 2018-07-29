@@ -68,9 +68,21 @@ public class IntentApproveRejectServelt extends HttpServlet {
 			query2.setString(3, brand);
 			query2.executeUpdate();
 		}
-		query=conn.prepareStatement("Update transaction set ttid=? where transid=?");
+		
+		query=conn.prepareStatement("Select * from transaction where transid=?");
+		query.setInt(1,transid);
+		ResultSet rs=query.executeQuery();
+		rs.next();
+		int custid=rs.getInt("custid");
+		query=conn.prepareStatement("Select * from user where custid=?");
+		query.setInt(1,custid);
+		rs=query.executeQuery();
+		rs.next();
+		String loc=rs.getString("location");
+		query=conn.prepareStatement("Update transaction set ttid=?,location=? where transid=?");
         query.setInt(1,ttid);
-        query.setInt(2,transid);
+        query.setString(2,loc);
+        query.setInt(3,transid);
         query.executeUpdate();
         response.sendRedirect("ManageIntent");
 	   	}catch (Exception e) {

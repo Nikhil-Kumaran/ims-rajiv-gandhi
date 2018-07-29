@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class TransactionBean implements Serializable {
+	private String location;
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 	private int transid,userid;
 	public int getUserid() {
 		return userid;

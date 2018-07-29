@@ -18,6 +18,7 @@ public class ItemsForm extends HttpServlet {
 	private String product_name;
 	private String product_brand;
 	private String unit;
+	private String supplier;
 	private float price;
 	private int stock;
 	
@@ -41,6 +42,7 @@ public class ItemsForm extends HttpServlet {
 		unit=req.getParameter("unit");
 		price=Float.parseFloat(req.getParameter("price"));
 		stock=Integer.parseInt((req.getParameter("stock")));
+		supplier=req.getParameter("supplier");
 		
 		ItemsFormBean bean = new ItemsFormBean();
 		bean.setType_category_id(type_category_id);
@@ -50,6 +52,7 @@ public class ItemsForm extends HttpServlet {
 		bean.setUnit(unit);
 		bean.setPrice(price);
 		bean.setStock(stock);
+		bean.setSupplier(supplier);
 		
 		RequestDispatcher rd = req.getRequestDispatcher("/ItemsFormDao");
 		req.setAttribute("item", bean);

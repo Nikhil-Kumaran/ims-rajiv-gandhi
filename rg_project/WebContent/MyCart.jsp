@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="header.html" %> 
-<title>Home</title>
+<title>MyCart</title>
 <script language="JavaScript">
 function checkAll(ele) {
     var checkboxes = document.getElementsByTagName('input');
@@ -29,10 +29,14 @@ function checkAll(ele) {
 </head>
 <body>
 <%@ include file="userses.jsp" %>
-<%@ include file="user_template.html" %> 
-
-<%String userid="8"; %>       
+<%@ include file="user_template.jsp" %> 
+		
+<%
+UserRegBean currentUser = new UserRegBean();
+currentUser = (UserRegBean)session.getAttribute("user");
+int userid=currentUser.getCustid(); %>       
          <div class="col-10" id="content">
+         <h1 style="text-align:center">MyCart</h1>
             <div class="container">
              <form action="IntentRequestServlet" method="post">
                <table class="table">
@@ -52,7 +56,7 @@ function checkAll(ele) {
                   ResultSet rs;
                   try{
                   UserAllTransactions uat=new UserAllTransactions();
-                  rs=uat.Trans(userid,5);
+                  rs=uat.Trans(userid+"",5);
                   while(rs.next()){%>
                      <tr>
                         <td><input type="checkbox" name="transid" value="<%=rs.getInt("transid")%>"/></td>

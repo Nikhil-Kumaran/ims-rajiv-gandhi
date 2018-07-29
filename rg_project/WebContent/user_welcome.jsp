@@ -9,7 +9,7 @@
 </head>
 <body>
 <%@ include file="userses.jsp" %>
-	<%@ include file="user_template.html" %> 
+	<%@ include file="user_template.jsp" %> 
 	<div class="col-10" id="content">
 		<h2>User Dashboard</h2>
 		<h2>User username</h2>

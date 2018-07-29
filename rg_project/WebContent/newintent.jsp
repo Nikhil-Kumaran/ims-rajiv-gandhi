@@ -12,7 +12,22 @@
 </head>
 <body>
 <%@ include file="userses.jsp" %>
-	<%@ include file="user_template.html" %>
+<%
+Cookie[] c=request.getCookies();
+for(Cookie d:c)
+{
+		if(d.getName().equals("JSESSIONID")){
+		}
+		else{
+		System.out.println(d.getName());
+		d.setMaxAge(0);
+		response.addCookie(d);
+		}
+		
+		
+}
+%>
+	<%@ include file="user_template.jsp" %>
 	<% Cookie c1=new Cookie("intent","int");
 			//c1.setMaxAge(60*60*24);
 			response.addCookie(c1);

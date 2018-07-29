@@ -51,6 +51,6 @@ catch(Exception e){
 <tr>
 <td colspan=6 style="text-align:center"><a href="MyCart.jsp"> Go To My Cart</a></td>
  </tr>
-
+<
 </body>
 </html>

@@ -12,7 +12,11 @@
 </head>
 <body>
 	<%@ include file="userses.jsp" %>
-	<%@ include file="user_template.html" %> 
+	<%@ include file="user_template.jsp" %>
+	<%
+		UserRegBean currentUser = new UserRegBean();
+		currentUser = (UserRegBean)session.getAttribute("user");
+		int userid=currentUser.getCustid();%>
 	<div class="col-10" id="content">
             <div class="container">
             	<h1 style="text-align:center">Transaction List</h1>
@@ -40,10 +44,12 @@
                            <tr>
                               <th scope="col">Transaction ID</th>
                               <th scope="col">Item name</th>
+                              <th scope="col">Brand name</th>
                               <th scope="col">Transaction type</th>
                               <th scope="col">Customer name</th>
                               <th scope="col">Time</th>
                               <th scope="col">Quantity</th>
+                              
                            </tr>
                         </thead>
                         <tbody>
@@ -51,11 +57,13 @@
 
                         Collection <TransactionBean> trans = (Collection) request.getAttribute("trans");
                         for(TransactionBean t : trans){
-                           if(t.getUserid() == 8){
+                        	
+                           if(t.getUserid() == userid){
                         %>
                            <tr>
                               <th scope="row"><%= t.getTransid()%></th>
                               <td><%= t.getIname() %></td>
+                              <td><%= t.getBrandname() %></td>
                               <td><%= t.getTtname()%></td>
                               <td><%= t.getUsername() %></td>
                               <td><%= t.getTime() %></td>
@@ -85,7 +93,7 @@
 
                               
                               for(TransactionBean t : trans){
-                              if(t.getTtype() == 3 && t.getUserid() == 8){
+                              if(t.getTtype() == 3 && t.getUserid() == userid){
                               %>
                                     <tr>
                                     <th scope="row"><%= t.getTransid()%></th>
@@ -119,7 +127,7 @@
 
                               
                               for(TransactionBean t : trans){
-                              if(t.getTtype() == 1 && t.getUserid() == 8){
+                              if(t.getTtype() == 1 && t.getUserid() == userid){
                               %>
                                     <tr>
                                     <th scope="row"><%= t.getTransid()%></th>
@@ -153,7 +161,7 @@
 
                               
                               for(TransactionBean t : trans){
-                              if(t.getTtype() == 2 && t.getUserid() == 8){
+                              if(t.getTtype() == 2 && t.getUserid() == userid){
                               %>
                                     <tr>
                                     <th scope="row"><%= t.getTransid()%></th>
@@ -187,7 +195,7 @@
 
                         
                         for(TransactionBean t : trans){
-                        if(t.getTtype() == 4 && t.getUserid() == 8){
+                        if(t.getTtype() == 4 && t.getUserid() == userid){
                         %>
                               <tr>
                               <th scope="row"><%= t.getTransid()%></th>

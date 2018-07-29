@@ -40,7 +40,7 @@ public class ItemsFormDao extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		ItemsFormBean b = (ItemsFormBean) req.getAttribute("item");
 		PreparedStatement query;
-		String sql1=null,sql2=null;
+		String sql1=null,sql2=null,sql3=null;
 		try 
 		{
 			Statement stmt = conn.createStatement();
@@ -52,7 +52,11 @@ public class ItemsFormDao extends HttpServlet {
 			ResultSet rs2=stmt.executeQuery(sql2);
 			rs2.next();
 			int cid=rs2.getInt("cid");
-			query = conn.prepareStatement("insert into items (tcid,cid,iname,ibrand,iprice,iunit,istock) values(?,?,?,?,?,?,?)");
+			sql3="select * from suppliers where suppname='"+ b.getSupplier()+"'";
+			ResultSet rs3=stmt.executeQuery(sql3);
+			rs3.next();
+			int sid=rs3.getInt("suppid");
+			query = conn.prepareStatement("insert into items (tcid,cid,iname,ibrand,iprice,iunit,istock,supplierid) values(?,?,?,?,?,?,?,?)");
 			query.setInt(1,tcid);
 			query.setInt(2,cid);
 			query.setString(3, b.getProduct_name());
@@ -60,6 +64,7 @@ public class ItemsFormDao extends HttpServlet {
 			query.setFloat(5, b.getPrice());
 			query.setString(6, b.getUnit());
 			query.setInt(7, b.getStock());
+			query.setInt(8, sid);
 			query.executeUpdate();
 			
 			res.sendRedirect("ItemsPreprocess");
